@@ -4,6 +4,7 @@ import re
 import streamlit as st
 from openai import OpenAI
 
+os.environ["OPENAI_API_KEY"] = "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"
 
 
 # --- 1. Initialize OpenAI client ---
@@ -90,7 +91,7 @@ if prompt := st.chat_input(placeholder="Type your question here..."):
         # For each item, call handler and add to chat
         for item in routing:
             agent_name, agent_prompt = handler_map.get(item["agent"], handler_map["General Assistant"])(item["prompt"])
-            response_text = f"**{agent_name}** responded to: {agent_prompt}"
+            response_text = f"**{agent_name} Activated**. Prompt: {agent_prompt}"
             st.session_state.history.append(("assistant", response_text))
     except Exception as e:
         st.session_state.history.append(("assistant", f"❌ Error: {e}"))
